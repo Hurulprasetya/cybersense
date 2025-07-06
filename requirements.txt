@@ -1,0 +1,7 @@
+Flask
+pandas
+Sastrawi
+scikit-learn
+imbalanced-learn
+gunicorn
+scipy
