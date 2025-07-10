@@ -10,8 +10,12 @@ app = Flask(__name__)
 # ===========================
 
 # Binary Classification
-with open('model/model_binary_nb.pkl', 'rb') as f:
-    binary_model = pickle.load(f)
+try:
+    with open('model/model_binary_nb.pkl', 'rb') as f:
+        binary_model = pickle.load(f)
+except Exception as e:
+    print("Gagal load binary model:", e)
+    binary_model = None
 
 with open('model/tfidf_vectorizer_binary.pkl', 'rb') as f:
     tfidf_binary = pickle.load(f)
@@ -20,8 +24,12 @@ with open('model/target_encoder_binary.pkl', 'rb') as f:
     encoder_binary = pickle.load(f)
 
 # Multiclass Classification
-with open('model/model_multiclass_nb.pkl', 'rb') as f:
-    multiclass_model = pickle.load(f)
+try:
+    with open('model/model_multiclass_nb.pkl', 'rb') as f:
+        multiclass_model = pickle.load(f)
+except Exception as e:
+    print("Gagal load model multiclass:", e)
+    multiclass_model = None
 
 with open('model/tfidf_vectorizer_multiclass.pkl', 'rb') as f:
     tfidf_multi = pickle.load(f)

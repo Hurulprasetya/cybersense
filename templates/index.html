@@ -377,6 +377,11 @@
       </span>, kemungkinan hasil kurang akurat. Harap periksa konteks kalimat.
     </p>
     {% endif %}
+    {% if confidence is not none and confidence < 50 and label_utama != "Bukan Cyberbullying" %}
+    <p class="warning-message">
+      ⚠️ Confidence klasifikasi jenis cyberbullying rendah. Hasil bisa kurang akurat.
+    </p>
+    {% endif %}
     {% if hasil %}
     <h4>Detail Probabilitas Tiap Kategori:</h4>
     <table id="hasilTable" class="display" style="width:100%">
