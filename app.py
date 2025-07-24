@@ -5,9 +5,7 @@ from preprocessing_utils import clean_text, detect_target
 
 app = Flask(__name__)
 
-# ===========================
-# 🔹 Load Models & Encoders
-# ===========================
+# Load Models & Encoders
 
 # Binary Classification
 try:
@@ -37,9 +35,9 @@ with open('model/tfidf_vectorizer_multiclass.pkl', 'rb') as f:
 with open('model/target_encoder_multiclass.pkl', 'rb') as f:
     encoder_multi = pickle.load(f)
 
-# ===========================
-# 🔹 Keterangan Kategori
-# ===========================
+
+# Keterangan Kategori
+
 penjelasan_kategori = {
     'kata kasar': 'Penggunaan kata-kata kotor atau tidak sopan.',
     'ancaman': 'Pernyataan yang menakut-nakuti atau berisi niat menyakiti.',
@@ -50,9 +48,9 @@ penjelasan_kategori = {
     'Refleksi Diri': 'Kalimat ini mencela diri sendiri, bukan bentuk perundungan terhadap orang lain.'
 }
 
-# ===========================
-# 🔹 Routes
-# ===========================
+
+# Routes
+
 
 @app.route('/')
 def home():
@@ -66,9 +64,8 @@ def klasifikasi():
     kalimat_clean = clean_text(kalimat)
     target_kalimat = detect_target(kalimat) or "umum"
 
-    # ===========================
-    # 🔍 Deteksi Refleksi Diri
-    # ===========================
+
+    # Deteksi Refleksi Diri
     refleksi_pronouns = ['aku', 'saya', 'gue', 'gua', 'gw', 'ane', 'beta']
     kata_negatif = ['jelek', 'bodoh', 'hina', 'goblok', 'bego', 'burik', 'kampungan', 'norak', 'dekil', 'tolol', 'gendut', 'gendutan']
 
@@ -93,9 +90,8 @@ def klasifikasi():
             penjelasan_kategori=penjelasan_kategori
         )
 
-    # ===============================
-    # 🔸 Tahap 1: Binary Classification
-    # ===============================
+   
+    # Tahap 1: Binary Classification
     X_text_bin = tfidf_binary.transform([kalimat_clean])
     X_target_bin = encoder_binary.transform([[target_kalimat]])
     X_bin = hstack([X_text_bin, X_target_bin])
@@ -123,9 +119,8 @@ def klasifikasi():
             penjelasan_kategori=penjelasan_kategori
         )
 
-    # ===============================
-    # 🔸 Tahap 2: Multiclass Classification
-    # ===============================
+
+    # Tahap 2: Multiclass Classification
     X_text_multi = tfidf_multi.transform([kalimat_clean])
     X_target_multi = encoder_multi.transform([[target_kalimat]])
     X_multi = hstack([X_text_multi, X_target_multi])
@@ -154,8 +149,7 @@ def klasifikasi():
         penjelasan_kategori=penjelasan_kategori
     )
 
-# ===========================
-# 🔹 Run App
-# ===========================
+
+# Run App
 if __name__ == '__main__':
     app.run(debug=True)
