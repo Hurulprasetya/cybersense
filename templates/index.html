@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>CyberSense - Deteksi Ujaran Kebencian</title>
+  <title>CyberSense - Klasifikasi Tweet Cyberbullying/title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -330,9 +330,9 @@
   <button class="theme-toggle" onclick="toggleTheme()" id="themeButton">🌙 Dark Mode</button>
   <section class="hero">
     <h1><img src="{{ url_for('static', filename='images/cybersense-logo.png') }}" alt="Logo"> CyberSense</h1>
-    <p>Deteksi ujaran kebencian, body shaming, dan bullying otomatis untuk media sosial X.</p>
+    <p>Klasifikasi Tweet ujaran kebencian, body shaming, dan bullying otomatis untuk media sosial X.</p>
     <div class="typed-container"><span id="typed-text"></span></div>
-    <button onclick="document.getElementById('form').scrollIntoView({ behavior: 'smooth' });">Mulai Deteksi</button>
+    <button onclick="document.getElementById('form').scrollIntoView({ behavior: 'smooth' });">Mulai Klasifikasi</button>
   </section>
   <section class="campaign" data-aos="fade-up">
     <h2>#StopCyberbullying</h2>
@@ -399,7 +399,7 @@
     {% endif %}
   </div>
   <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" class="back-to-top">↑</button>
-  <footer><p>&copy; 2025 CyberSense | Deteksi Cerdas untuk Ruang Aman</p></footer>
+  <footer><p>&copy; 2025 CyberSense | Klasifikasi</p></footer>
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
@@ -407,7 +407,7 @@
   <script>
     AOS.init();
     new Typed('#typed-text', {
-      strings: ['CyberSense siap membantu kamu!', 'Deteksi cepat, hasil akurat.', 'Lindungi ruang digitalmu.'],
+      strings: ['CyberSense siap membantu kamu!', 'Klasifikasi Tweet Cyberbullying.', 'Lindungi ruang digitalmu.'],
       typeSpeed: 40, backSpeed: 25, backDelay: 2000, loop: true
     });
     $(document).ready(() => {
